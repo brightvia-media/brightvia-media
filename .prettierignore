@@ -1,0 +1,11 @@
+# Ignore Next.js output
+.next
+
+# Node modules & builds
+node_modules
+dist
+backend/dist
+frontend/.next
+
+# Lockfiles
+pnpm-lock.yaml

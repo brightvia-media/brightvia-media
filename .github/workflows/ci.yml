@@ -1,0 +1,44 @@
+name: CI
+
+# Run on pushes and PRs to any branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js and pnpm
+      - name: Setup Node.js
+        uses: pnpm/action-setup@v2
+        with:
+          node-version: '18'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: pnpm install
+
+      # 4. Lint the entire repo
+      - name: Run ESLint
+        run: pnpm lint
+
+      # 5. Compile type-checks
+      - name: Run TypeScript build
+        run: pnpm type-check
+
+      # 6. Run unit tests
+      - name: Run tests
+        run: pnpm test
+
+      # 7. Build both frontend & backend
+      - name: Build projects
+        run: pnpm build

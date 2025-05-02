@@ -6,19 +6,71 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "dev": "concurrently \"pnpm dev:frontend\" \"pnpm dev:backend\"",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "PORT=4000 pnpm --filter backend start:dev",
+    "build": "pnpm --filter frontend build && pnpm --filter backend build",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "format": "prettier --write .",
+    "type-check": "tsc -b tsconfig.base.json",
+    "prepare": "husky install .husky"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vestbm/brightvia-media.git"
+    "url": "git+https://github.com/brightvia-media/brightvia-media.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vestbm/brightvia-media/issues"
+    "url": "https://github.com/brightvia-media/brightvia-media/issues"
   },
-  "homepage": "https://github.com/vestbm/brightvia-media#readme",
+  "homepage": "https://github.com/brightvia-media/brightvia-media#readme",
+  "packageManager": "pnpm@8.6.0+sha512.b8c69619796f1be9b934825a47824411e9c285b83ed403f8cd5a6ab383c4719838b87fa55cc4ddfd7fe58ab29903e4c2d30d1dfbefb2ddbb4835cc322acbb000",
+  "private": true,
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vitest/ui": "^3.1.2",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.2",
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "dependencies": {
+    "eslint-config-next": "^15.3.1",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-module-utils": "^2.12.0",
+    "eslint-plugin-es": "^3.0.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-scope": "^8.3.0",
+    "eslint-utils": "^2.1.0",
+    "eslint-visitor-keys": "^4.2.0",
+    "prettier-linter-helpers": "^1.0.0",
+    "typescript-eslint": "^8.20.0"
+  },
   "description": "",
-  "packageManager": "pnpm@8.6.0+sha512.b8c69619796f1be9b934825a47824411e9c285b83ed403f8cd5a6ab383c4719838b87fa55cc4ddfd7fe58ab29903e4c2d30d1dfbefb2ddbb4835cc322acbb000"
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
 }

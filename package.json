@@ -64,5 +64,9 @@
     "typescript-eslint": "^8.20.0"
   },
   "description": "",
-  "lint-staged": "{\"*.{ts,tsx,js,jsx,json,md}\":[\"prettier --write\"]}"
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md}": [
+      "prettier --write"
+    ]
+  }
 }
